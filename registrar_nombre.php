@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Cerrar la declaración y la conexión
-    $stmt->close();
+
     $conn->close();
 }
 ?>
