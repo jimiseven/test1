@@ -1,9 +1,10 @@
+
 <?php
-// Datos de conexión a la base de datos de Railway
-$servername = "junction.proxy.rlwy.net";  // Host de Railway
-$username = "root";                        // Usuario de MySQL
-$password = "zwdEBASXYztjOFVqCxBeFVSYtlvblwBI";  // Contraseña de MySQL
-$dbname = "test1";                         // Nombre de la base de datos
+// Usar las variables de entorno proporcionadas por Railway
+$servername = getenv('junction.proxy.rlwy.net');    // Host de Railway
+$username = getenv('root');      // Usuario MySQL en Railway
+$password = getenv('zwdEBASXYztjOFVqCxBeFVSYtlvblwBI');  // Contraseña de MySQL en Railway
+$dbname = getenv('railway');        // Nombre de la base de datos en Railway
 
 // Crear la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
