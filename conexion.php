@@ -1,9 +1,9 @@
 <?php
 // Datos de conexión a la base de datos
-$servername = "localhost";  // Cambia si es necesario (por defecto es localhost)
+$servername = "junction.proxy.rlwy.net";  // Cambia si es necesario (por defecto es localhost)
 $username = "root";         // Nombre de usuario de MySQL (por defecto es root)
-$password = "";             // Contraseña de MySQL (deja vacío si no tiene contraseña)
-$dbname = "test1";          // Nombre de la base de datos
+$password = "zwdEBASXYztjOFVqCxBeFVSYtlvblwBI";             // Contraseña de MySQL (deja vacío si no tiene contraseña)
+$dbname = "railway";          // Nombre de la base de datos
 
 // Crear la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
