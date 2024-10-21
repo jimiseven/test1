@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Nombres</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script para obtener los datos con AJAX -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Llamada a listar_nombres.php para obtener los datos
+            fetch('listar_nombres.php')
+                .then(response => response.json())
+                .then(data => {
+                    let tableBody = document.getElementById('nombres-lista');
+                    tableBody.innerHTML = '';  // Limpiar la tabla antes de mostrar los datos
+
+                    if (data.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="3" class="text-center">No hay nombres registrados.</td></tr>';
+                    }
+
+                    // Recorrer los datos y mostrarlos en la tabla
+                    data.forEach(n => {
+                        let row = `<tr>
+                            <td>${n.nombre}</td>
+                            <td>${n.apellido}</td>
+                            <td>${n.fecha_nacimiento}</td>
+                        </tr>`;
+                        tableBody.innerHTML += row;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar los datos:', error);
+                    document.getElementById('error-message').innerText = 'Error al cargar los datos.';
+                    document.getElementById('error-message').style.display = 'block';
+                });
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MiAplicación</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Listado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reg.html">Registro</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Listado de Nombres</h2>
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                </tr>
+            </thead>
+            <tbody id="nombres-lista">
+                <!-- Los datos se cargarán aquí con AJAX -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
